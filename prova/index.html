@@ -27,22 +27,28 @@
             render(props) {
                 const {item} = this.props
                 return (
-                    <div className="card-container">
-                        <div className="card-header">
-                            <span className="nome">{item.nome}</span>
-                            <span className="id">{item.id}</span>
-                        </div>
-                        <div className="card-img"></div>
-                        <div className="card-body">
-                            <div className="titulo">{item.habilidades[0].nome}</div>
-                            <div className="texto">{item.habilidades[0].descricao[0]}</div>
-                        </div>
-                        <div className="card-footer">
-                            <i className="fas fa-plus pv"></i>&nbsp;
-                            {item.pv.base}(+{item.pv.bonus})
-                            &nbsp;
-                            <i className="fas fa-bolt pm"></i>&nbsp;
-                            {item.pm}
+                    <div class="card">
+                        <div className="card-container">
+                            <div class="front">
+                                <div className="card-header">
+                                    <span className="nome">{item.nome}</span>
+                                    <span className="id">{item.id}</span>
+                                </div>
+                                <div className="card-img"></div>
+                                <div className="card-body">
+                                    <div className="texto">{item.habilidades[0].descricao[0]}</div>
+                                </div>
+                                <div className="card-footer">
+                                    <i className="fas fa-plus pv"></i>&nbsp;
+                                {item.pv.base}(+{item.pv.bonus})
+                                    &nbsp;
+                                <i className="fas fa-bolt pm"></i>&nbsp;
+                                {item.pm}
+                                </div>
+                            </div>
+                            <div class="back">
+                            teste
+                            </div>                            
                         </div>
                     </div>
                 );
