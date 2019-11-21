@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Prova SM</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+    <script src="https://kit.fontawesome.com/9363005d4a.js" crossorigin="anonymous"></script>
+    <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
+    <script type="application/javascript"
+        src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+    "use strict";
+        const rootElement = document.getElementById('root');
+        class Card extends React.Component {   
+            constructor(props){
+                super(props);                
+            }
+            render(props) {
+                const {item} = this.props
+                return (
+                    <div className="card-container">
+                        <div className="card-header">
+                            <span className="nome">{item.nome}</span>
+                            <span className="id">{item.id}</span>
+                        </div>
+                        <div className="card-img"></div>
+                        <div className="card-body">
+                            <div className="titulo">{item.habilidades[0].nome}</div>
+                            <div className="texto">{item.habilidades[0].descricao[0]}</div>
+                        </div>
+                        <div className="card-footer">
+                            <i className="fas fa-plus pv"></i>&nbsp;
+                            {item.pv.base}(+{item.pv.bonus})
+                            &nbsp;
+                            <i className="fas fa-bolt pm"></i>&nbsp;
+                            {item.pm}
+                        </div>
+                    </div>
+                );
+            }
+        }
+        class Main extends React.Component {
+            constructor(props) {
+                super(props)
+                this.state = {
+                    classes:null,
+                    carregado: false
+                    };
+            }
+            componentDidMount(){
+            fetch('https://tormenta20-api.herokuapp.com/api/classes/')
+                .then(response =>response.json())
+                .then(data => this.setState({classes: data.data, carregado: true}));
+            }
+            render() {
+                const { classes, carregado } = this.state;
+                if(carregado){                    
+                    return (
+                        <div className="main">
+                            {
+                                Object.keys(classes).map(item => (
+                                    <Card key={item.id} item={classes[item]} />
+                                ))
+                            }
+                        </div> 
+                    )
+                }else{
+                    return "";
+                }
+            }
+        }
+
+        function App() {
+            return (<Main/>)
+        }
+
+        ReactDOM.render(
+            <App />,
+            rootElement
+        )
+    </script>
+
+</body>
+
+</html>
