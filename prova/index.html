@@ -9,8 +9,7 @@
     <link rel="stylesheet" type="text/css" href="styles.css">
     <script src="https://kit.fontawesome.com/9363005d4a.js" crossorigin="anonymous"></script>
     <script type="application/javascript" src="https://unpkg.com/react@16.0.0/umd/react.production.min.js"></script>
-    <script type="application/javascript"
-        src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
+    <script type="application/javascript" src="https://unpkg.com/react-dom@16.0.0/umd/react-dom.production.min.js"></script>
     <script type="application/javascript" src="https://unpkg.com/babel-standalone@6.26.0/babel.js"></script>
 </head>
 
@@ -18,14 +17,13 @@
     <div id="root"></div>
 
     <script type="text/babel">
-    "use strict";
         const rootElement = document.getElementById('root');
         class Card extends React.Component {   
             constructor(props){
                 super(props);                
             }
-            render(props) {
-                const {item} = this.props
+            render() {
+                const {item} = this.props;
                 return (
                     <div class="card">
                         <div className="card-container">
@@ -47,7 +45,20 @@
                                 </div>
                             </div>
                             <div class="back">
-                            teste
+                                <table className="tabela">
+                                    <tr>
+                                        <th>Nível</th>
+                                        <th>Benefício</th>
+                                    </tr>                                    
+                                    {
+                                        Object.keys(item["tabela"]).map((i) => (                                            
+                                            <tr>
+                                                <td>{parseInt(i)+1}</td>
+                                                <td>{item["tabela"][i]}</td>
+                                            </tr>
+                                            ))
+                                    }
+                                </table>                                
                             </div>                            
                         </div>
                     </div>
