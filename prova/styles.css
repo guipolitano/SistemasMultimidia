@@ -144,5 +144,21 @@ body,
   display: flex;
   flex-direction: column;
   height: 100%;
+  width: 100%;
   backface-visibility: hidden;
+}
+
+.tabela{
+  color: white;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+
+}
+
+.tabela tr{
+  display: flex;
+  justify-content: space-between;
 }
